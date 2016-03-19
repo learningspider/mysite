@@ -1,4 +1,8 @@
 from django.shortcuts import render
+from hashlib import sha1
+import os,time
+
+create_session = lambda : sha1('%s%s' %(os.urandom(16),time.time())).hexdigest()
 
 def index(request):
     return render(request,'prize/index.html')
