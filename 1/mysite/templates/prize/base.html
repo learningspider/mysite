@@ -19,25 +19,7 @@
 <script type="text/javascript"	src="/statics/prize/js/jquery.extention.js"></script>
 <script type="text/javascript" src="/statics/prize/js/lazyload.js8"></script>
 <script type="text/javascript" src="/statics/prize/js/jquery.cookie.js"></script>
-<script type="text/javascript">
-	function GetRequest() {
-		var url = location.search; //获取url中"?"符后的字串
-		var theRequest = new Object();
-		if (url.indexOf("?") != -1) {
-			var str = url.substr(1);
-			strs = str.split("&");
-			for (var i = 0; i < strs.length; i++) {
-				theRequest[strs[i].split("=")[0]] = unescape(strs[i].split("=")[1]);
-			}
-		}
-		return theRequest;
-	}
-	var Request = new Object();
-	Request = GetRequest();
-	if(!$.cookie("source")){
-		$.cookie('source', Request['source'],{domain:"biyao.com",path:"/"});
-	}
-</script>
+
     {% endblock %}
 </head>
 <body id="pagebody">
