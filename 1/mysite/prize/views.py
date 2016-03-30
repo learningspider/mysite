@@ -19,7 +19,7 @@ def acc_login(request):
     if request.method == 'POST':
         userName = request.POST.get('userName')
         password = request.POST.get('password')
-
+        print userName,password
         user = authenticate(username=userName,password=password)
         if user is not None:
             login(request,user)

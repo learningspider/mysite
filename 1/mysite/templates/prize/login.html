@@ -9,11 +9,11 @@
 {% block body %}
 <div class="wrap h580">
 <div class="loginItem auto ">
-   	<form class="loginBox" method="post" id="J_login" action="{% url 'login' %}">
+   	<form class="loginBox" method="post" id="J_login">{% csrf_token %}
    		<div class="inline loginTitBox"><i class="inline loginListBg spIcon mg_r10"></i><span class="inline">用户登录</span></div>
 	   	<dl class="mg_t20 ">
 	   		<!-- <dt class="inline">手机号：</dt> -->
-	   		<dd class="inline mg_r5"><input value="请输入您的手机号码" type="text" name="userName" class=" loginTxt  w360 col_999"></dd>
+	   		<dd class="inline mg_r5"><input id="username" value="请输入您的手机号码" type="text" name="userName" class=" loginTxt  w360 col_999"></dd>
 	        <dd class="J_validate inline col_f90 "><i class="tip_erorr inline"></i>请输入正确的用户名</dd>
 	   	</dl>
 	   	<dl class=" mg_t20 ">
@@ -55,130 +55,40 @@
 </div>
 
 
- <script>
-function qqLogin(){
-	var returnUrl = $("#returnUrlId").val();
-	var url = "http://www.biyao.com/account/qqlogin.html?returnUrl="+returnUrl;
-	window.location.href=url;
-}
-</script>
-<script type="text/javascript">
-// 调用QC.Login方法，指定btnId参数将按钮绑定在容器节点中
-// 	QC.Login.getMe(function(openId, accessToken) {
-// 		$.ajax({
-// 			url:'/account/qqlogin.html',
-// 			data:{"openid":openId,"access_token":accessToken,"platform":"pc"},
-// 			dataType:'json',
-// 			type:'post',
-// 			async:false,
-// 			success:function(result){
-// 				if(result.success==1){
-// 					window.location.href=$("#returnUrlId").val();
-// 				}
-// 			},
-// 			error:function(XMLHttpRequest, textStatus, errorThrown){
-
-// 			}
-// 		});
-// 	});
-//登录 验证码
-
-</script>
 
 
-<script src="/statics/prize/js/common.js" type="text/javascript"></script>
-	<script type="text/javascript"	src="http://static4.biyao.com/pc/www/js/common.js?v=biyao_bd8bd36"></script>
+
+
+
+
+
+
+
 
 
 <script type="text/javascript">
-	$(function(){
-
-	 	 $(".loginTxt").focus(function(){
-				 if ($(this).val() == $(this)[0].defaultValue) {
-					    $(this).val("");
-				  }
-
-			});
-
-	 	 	$("#passwd_show").focus(function(){
-	 	 		$(this).addClass("none");
-	 	 		$("#passwd1").removeClass("none").focus();
-	 	 	});
-	 	 	$("#passwd1").blur(function(){
-	 	 		if ($.trim($(this).val()) == "") {
-		 	 		$("#passwd_show").removeClass("none");
-		 	 		$(this).addClass("none")
-		 	 	}
-	 	 	});
-			$(".loginTxt").blur(function(){
-				  if ($.trim($(this).val()) == "") {
-					    $(this).val($(this)[0].defaultValue);
-					   }
-			});
-	});
-
-</script>
-<script src="/statics/prize/js/validate.js"></script>
-<script type="text/javascript">
-	$(function(){
-		setTimeout(function(){
-			LT.temp.loginFn.changeVcode();
-		},100);
-
-		$('form').find("[name='checkRememberMe']").click(function(){
-			$(this).parent().toggleClass('checked');
-			if($(this).parent().hasClass('checked')){
-				$(this).next().text("请勿在公用电脑上勾选此选项");
-			}else{
-				$(this).next().text("下次自动登录");
-			}
-		})
-		LT.temp.loginFn.login($("#J_login"));
-		isLoginError();
-		$(".J_login_btn").click(function(){
-			isLoginError();
-		});
-		$("#imgChange").bind('click',function(){
-			LT.temp.loginFn.changeVcode();
-		});
-
-	})
-	function register(){
-		parent.window.open('http://www.biyao.com/account/register.html?returnUrl='+parent.window.location.href);
-	}
-	function findpwd(){
-		parent.window.open('http://www.biyao.com/findpwd/index?returnUrl='+parent.window.location.href);
-	}
-
-//判断是否显示验证码登录
-function isLoginError(){
-
-	if(parseInt($.cookie("loginErrorTimes"))>=2){
-
-			$("#authCode").removeClass("none");
-
-	}
-}
-
-
-
-</script>
-
-<script type="text/javascript">
+ $.ajaxSetup({
+  beforeSend: function(xhr, settings){
+      var csrftoken = $.cookie('csrftoken');
+      xhr.setRequestHeader("X-CSRFToken", csrftoken);
+  }
+});
 $(document).ready(function(){
+
   $("#loginButton").click(function(){
- // 下面这行代码就是你要的ID属性
- $.post("demo_test_post.asp",
-  {
-    name:"Donald Duck",
-    city:"Duckburg"
-  },
-  function(data,status){
-    alert("Data: " + data + "\nStatus: " + status);
-  });
+
+
+	 $.post("{% url 'login' %}",
+	  {
+		userName:$("#username").val(),
+		password:$("#passwd1").val()
+	  },
+	  function(data,status){
+		alert("Data: " + data + "\nStatus: " + status);
+	  });
 
 });
-  });
+
 });
 </script>
 
