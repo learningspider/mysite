@@ -10,6 +10,12 @@ def index(request):
 def shop(request):
     return render(request,'prize/index.html')
 
+def register(request):
+    return render(request,'prize/register.html')
+
+def login(request):
+    return render(request,'prize/login.html')
+
 '''def acc_login(requeset):
     login_err = ''
     if requeset.method == 'POST':

@@ -1,0 +1,56 @@
+{% extends 'prize/base.html' %}
+
+
+{% block title %}必要 - 全球首家C2M电子商务平台{% endblock  %}
+
+{% block home_banner %}
+{% endblock %}
+
+{% block body %}
+<div class="wrap h580">
+<div class="loginItem auto ">
+   	<form class="loginBox" method="post" id="J_login">
+   		<div class="inline loginTitBox"><i class="inline loginListBg spIcon mg_r10"></i><span class="inline">用户登录</span></div>
+	   	<dl class="mg_t20 ">
+	   		<!-- <dt class="inline">手机号：</dt> -->
+	   		<dd class="inline mg_r5"><input value="请输入您的手机号码" type="text" name="userName" class=" loginTxt  w360 col_999"></dd>
+	        <dd class="J_validate inline col_f90 "><i class="tip_erorr inline"></i>请输入正确的用户名</dd>
+	   	</dl>
+	   	<dl class=" mg_t20 ">
+	   		<dd class="inline mg_r5">
+	   			<input id="passwd1" type="password" name="password" onblur="blankTest();" class="loginTxt w360 col_999 none">
+	   			<input id="passwd_show" type="text" value="请输入您的密码" class="loginTxt w360 col_999">
+	   		</dd>
+	        <dd class="J_validate inline col_f90"><i class="tip_erorr inline"></i>请输入密码且不能包含空格</dd>
+	   	</dl>
+	   	<dl class="mg_t20 sizeZero none" id="authCode">
+	   		<dd class="inline mg_r20"><input value="请填写右侧的验证码" type="text" name="" id="checkNum" class="loginTxt w160 col_999" maxlength="4"></dd>
+	   		<dd class="inline mg_r20"><img src="http://api.biyao.com/vcode/get?id=0.12710552080534399" height="45" width="120" id="imgVCode" sid="0.12710552080534399"></dd>
+	   		<dd class="inline mg_r5"><a href="javascript:;" id="imgChange" class="col_999 unLine">看不清<br>换一张</a></dd>
+	        <dd class="J_validate_code inline col_f90 "></dd>
+	   	</dl>
+	   	<dl class="mg_t20 w400 relative">
+	      	<!-- <dt class="inline">&nbsp</dt> -->
+	       	<dd class="inline">
+	           	<span class="inline mg_r10 "><i class="openIcon inline mg_r10" name="checkRememberMe"></i><span class="inline col_8a8a8a">下次自动登录</span></span>
+	               <a href="http://www.biyao.com/findpwd/index?returnUrl=http://badge.biyao.com/man/index.html?f_upd=fb-170" class="inline col_link boxR">忘记密码</a>
+	       	</dd>
+	   	</dl>
+	   	<dl class="mg_t10">
+	      	<dd class="J_loginTips inline "><span class="col_f90"></span></dd>
+	   	</dl>
+	  	<input type="hidden" id="returnUrlId" name="returnUrl" value="http://badge.biyao.com/man/index.html?f_upd=fb-170">
+	   	<input type="button" class="J_login_btn loginBtn w400  inline t_c mg_t10" value="登录"> <br>
+	   	<div class="w400 mg_t40">
+	   		<p class="sizeZero">
+	   			<span class="col_666 f14 mg_r10 inline">使用第三方账号登录：</span>
+<!-- 	   			<a onclick="return window.open('https://graph.qq.com/oauth2.0/authorize?client_id=101235242&response_type=token&scope=all&redirect_uri=http%3A%2F%2Fqzonestyle.gtimg.cn%2Fqzone%2Fopenapi%2Fredirect.html', 'oauth2Login_10000' ,'height=525,width=585, toolbar=no, menubar=no, scrollbars=no, status=no, location=yes, resizable=yes')" href="javascript:;" class="inline pd_r10 qq_login"> QQ</a> -->
+	   			<a class="inline weix_login" href="https://open.weixin.qq.com/connect/qrconnect?appid=wx80d97d6a31aaa448&amp;redirect_uri=http://www.biyao.com/account/weixinlogin.html?returnUrl=http://badge.biyao.com/man/index.html?f_upd=fb-170&amp;response_type=code&amp;scope=snsapi_login&amp;state=123#wechat_redirect" style="border-left:1px solid #ddd">微信</a>
+	   		<a class="qq_login inline mg_l10 " href="javascript:void(0);" onclick="qqLogin();">qq</a>
+	   		</p>
+	   	</div>
+
+		</form>
+</div>
+</div>
+{% endblock %}
