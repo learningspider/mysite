@@ -48,8 +48,14 @@
 			</div>
 		<div class="f_r">
 			<ul class="pub_nav_list sizeZero">
-				<li class="inline" id="welcomID"><span class="col_aaa mg_r10">欢迎来到必要，请</span><a class="" onclick='LT.login_uri("/account/login.html")'>登录</a><span class="bg"></span></li>
-				<li class="inline" id="messageID"><a onclick='LT.register_uri("/account/register.html")'>注册</a><span class="bg"></span></li>
+                {% if user.is_authenticated %}
+                    <li class="inline" id="welcomID"><span class="col_aaa mg_r10">欢迎{{ user }}来到必要</span><span class="bg"></span></li>
+                    <li class="inline" id="messageID"><a href="{% url 'logout' %}" >退出</a><span class="bg"></span></li>
+                {% else %}
+                    <li class="inline" id="welcomID"><span class="col_aaa mg_r10">欢迎来到必要，请</span><a href="{% url 'login' %}" >登录</a><span class="bg"></span></li>
+                    <li class="inline" id="messageID"><a href="{% url 'register' %}" >注册</a><span class="bg"></span></li>
+                {% endif %}
+
 				<li class="inline last">
 					<a href="javascript:void(0);" class="">个人中心<i class="inline pep_bg mg_l10"></i></a>
 					<div class="app_box">
