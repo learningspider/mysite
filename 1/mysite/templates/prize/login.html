@@ -9,7 +9,7 @@
 {% block body %}
 <div class="wrap h580">
 <div class="loginItem auto ">
-   	<form class="loginBox" method="post" id="J_login">{% csrf_token %}
+   	<form class="loginBox" method="post" id="J_login" action="{% url 'login' %}">{% csrf_token %}
    		<div class="inline loginTitBox"><i class="inline loginListBg spIcon mg_r10"></i><span class="inline">用户登录</span></div>
 	   	<dl class="mg_t20 ">
 	   		<!-- <dt class="inline">手机号：</dt> -->
@@ -40,7 +40,7 @@
 	      	<dd class="J_loginTips inline "><span class="col_f90"></span></dd>
 	   	</dl>
 	  	<input type="hidden" id="returnUrlId" name="returnUrl" value="http://badge.biyao.com/man/index.html?f_upd=fb-170">
-	   	<input type="button" class="J_login_btn loginBtn w400  inline t_c mg_t10" value="登录" id="loginButton"> <br>
+	   	<input type="submit" class="J_login_btn loginBtn w400  inline t_c mg_t10" value="登录" id="loginButton"> <br>
 	   	<div class="w400 mg_t40">
 	   		<p class="sizeZero">
 	   			<span class="col_666 f14 mg_r10 inline">使用第三方账号登录：</span>
@@ -51,8 +51,10 @@
 	   	</div>
 
 		</form>
+    <p>{{ login_err }}</p>
 </div>
 </div>
+
 
 
 
@@ -73,6 +75,9 @@
       xhr.setRequestHeader("X-CSRFToken", csrftoken);
   }
 });
+</script>
+<!--
+ <script type="text/javascript">
 $(document).ready(function(){
 
   $("#loginButton").click(function(){
@@ -84,14 +89,84 @@ $(document).ready(function(){
 		password:$("#passwd1").val()
 	  },
 	  function(data,status){
-		alert("Data: " + data + "\nStatus: " + status);
+		//alert("Data: " + data + "\nStatus: " + status);
 	  });
 
 });
 
 });
 </script>
+-->
+<script type="text/javascript">
+	$(function(){
+
+	 	 $(".loginTxt").focus(function(){
+				 if ($(this).val() == $(this)[0].defaultValue) {
+					    $(this).val("");
+				  }
+
+			});
+
+	 	 	$("#passwd_show").focus(function(){
+	 	 		$(this).addClass("none");
+	 	 		$("#passwd1").removeClass("none").focus();
+	 	 	});
+	 	 	$("#passwd1").blur(function(){
+	 	 		if ($.trim($(this).val()) == "") {
+		 	 		$("#passwd_show").removeClass("none");
+		 	 		$(this).addClass("none")
+		 	 	}
+	 	 	});
+			$(".loginTxt").blur(function(){
+				  if ($.trim($(this).val()) == "") {
+					    $(this).val($(this)[0].defaultValue);
+					   }
+			});
+	});
+
+</script>
 
 
+<script type="text/javascript">
+	$(function(){
+		setTimeout(function(){
+			LT.temp.loginFn.changeVcode();
+		},100);
+
+		$('form').find("[name='checkRememberMe']").click(function(){
+			$(this).parent().toggleClass('checked');
+			if($(this).parent().hasClass('checked')){
+				$(this).next().text("请勿在公用电脑上勾选此选项");
+			}else{
+				$(this).next().text("下次自动登录");
+			}
+		})
+		LT.temp.loginFn.login($("#J_login"));
+		isLoginError();
+		$(".J_login_btn").click(function(){
+			isLoginError();
+		});
+		$("#imgChange").bind('click',function(){
+			LT.temp.loginFn.changeVcode();
+		});
+
+	})
+	function register(){
+		parent.window.open('http://www.biyao.com/account/register.html?returnUrl='+parent.window.location.href);
+	}
+	function findpwd(){
+		parent.window.open('http://www.biyao.com/findpwd/index?returnUrl='+parent.window.location.href);
+	}
+
+//判断是否显示验证码登录
+function isLoginError(){
+
+	if(parseInt($.cookie("loginErrorTimes"))>=2){
+
+			$("#authCode").removeClass("none");
+
+	}
+}
+    </script>
 {% endblock %}
 

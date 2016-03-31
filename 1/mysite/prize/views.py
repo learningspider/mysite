@@ -7,12 +7,16 @@ from django.contrib.auth.decorators import login_required
 #create_session = lambda : sha1('%s%s' %(os.urandom(16),time.time())).hexdigest()
 
 def index(request):
+    if request.user.is_authenticated():
+        return render(request,'prize/index.html',{'user':request.user})
     return render(request,'prize/index.html')
 
 def shop(request):
     return render(request,'prize/index.html')
 
 def acc_register(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/')
     return render(request,'prize/register.html')
 
 def acc_login(request):
@@ -21,6 +25,7 @@ def acc_login(request):
         password = request.POST.get('password')
         print userName,password
         user = authenticate(username=userName,password=password)
+        print user
         if user is not None:
             login(request,user)
 
@@ -28,7 +33,9 @@ def acc_login(request):
 
         else:
             login_err = "Wrong username or password!"
-        return  render(request,'prize/login.html', {'login_err':login_err})
+            return  render(request,'prize/login.html', {'login_err':login_err})
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/')
     return render(request,'prize/login.html')
 
 @login_required
