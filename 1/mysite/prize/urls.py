@@ -6,6 +6,7 @@ urlpatterns = [
     url("^register$", views.acc_register, name="register"),
     url("^login", views.acc_login, name="login"),
     url("^logout", views.acc_logout, name="logout"),
+    url("^profile", views.profile, name="profile"),
     #url("^host_mgr/$", views.host_mgr, name="host_mgr"),
 
 ]

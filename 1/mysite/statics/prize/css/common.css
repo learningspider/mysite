@@ -172,7 +172,7 @@ a.btnH48 { height: 48px; line-height: 48px; }
 /*滚动条*/
 .scrollOut { position: absolute; top: 5px; right: 6px; width: 6px; z-index: 100; border-radius:3px;  }
 .scrollOut .scrollBg{ width:6px; height:23px; position:absolute;left:0; bottom:0;}
-.scrollOut .con{position:relative;}	
+.scrollOut .con{position:relative;}
 .scrollOut .scrollIn { position: absolute;top:0; right: 0px; width: 6px; height: 20px; background-color: #A199A5; z-index: 120;border-radius:3px;  }
 .off {  background-color: #D5CDDA}
 .on { background-color:  #D5CDDA; }
@@ -451,3 +451,5 @@ li.shopping_cart{padding-left:0}
 /*历史订单提示*/
 .historyOrderTit{height:37px;background:#fff6d2;border:1px solid #ffd5b3; color:#e74b00;line-height:37px;padding-left:20px;}
 .historyOrderTitdel{float:right;margin:5px 10px 0 0;cursor: pointer;height:27px;line-height:27px;}
+
+
