@@ -57,3 +57,9 @@ def acc_logout(request):
         else:
             login_err = "Wrong username or password!"
     return  render(requeset,'login.html', {'login_err':login_err})'''
+
+@login_required
+def profile(request):
+    if request.user.is_authenticated():
+        return render(request,'prize/profile.html',{'user':request.user})
+    return render(request,'prize/profile.html')
