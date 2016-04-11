@@ -1,0 +1,96 @@
+{% extends 'prize/profile.html' %}
+
+{% block profile %}
+<div class="per_right ">
+		<div class="">
+			<div class="relative">
+				<h4 class="nTitle">个人设置</h4>
+				<h3 class="per_title">
+					<a href="{% url 'profile' %}"><span>个人信息</span></a>
+					<a class="a_checked" href="{% url 'MyAddressManager' %}"><span>管理收货地址</span></a>
+					<a class="bd_r_none" href="{% url 'ChangePassword' %}" id="forgetPasswordID"><span>修改密码</span></a>
+				</h3>
+			</div>
+				<form method="post" id="formAddress">
+					<div class="pd10">
+					<input type="hidden" data-highlight="highlight" maxlength="16" value="0" name="isUpdate">
+					<input class="J_hide" type="hidden" id="hid_province" name="province">
+                    <input class="J_hide" type="hidden" id="hid_city" name="city">
+                    <input class="J_hide" type="hidden" id="hid_area" name="areaId">
+						<table border="0" cellspacing="0" class="per_table th80">
+							<tbody><tr>
+								<th>
+									<span class="col_ee5b47"></span>收货人姓名：
+								</th>
+								<td>
+									<input type="text" data-highlight="highlight" maxlength="64" value="" name="receiver" class="inpCom w200 permy">
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<span class="col_ee5b47"></span>省市：
+								</th>
+								<td>
+									<div class="J_province w120 mg_r10 posR f_l permy"><div class="J_select"><span data-value="" class="sel_span">--请选择--</span><div class="sel_div" style="height: 0px;"><ul class="sel_ul"><li data-hover="hover" data-value="">--请选择--</li><li data-hover="hover" data-value="110000">北京市</li><li data-hover="hover" data-value="120000">天津市</li><li data-hover="hover" data-value="130000">河北省</li><li data-hover="hover" data-value="140000">山西省</li><li data-hover="hover" data-value="150000">内蒙古</li><li data-hover="hover" data-value="210000">辽宁省</li><li data-hover="hover" data-value="220000">吉林省</li><li data-hover="hover" data-value="230000">黑龙江省</li><li data-hover="hover" data-value="310000">上海市</li><li data-hover="hover" data-value="320000">江苏省</li><li data-hover="hover" data-value="330000">浙江省</li><li data-hover="hover" data-value="340000">安徽省</li><li data-hover="hover" data-value="350000">福建省</li><li data-hover="hover" data-value="360000">江西省</li><li data-hover="hover" data-value="370000">山东省</li><li data-hover="hover" data-value="410000">河南省</li><li data-hover="hover" data-value="420000">湖北省</li><li data-hover="hover" data-value="430000">湖南省</li><li data-hover="hover" data-value="440000">广东省</li><li data-hover="hover" data-value="450000">广西</li><li data-hover="hover" data-value="460000">海南省</li><li data-hover="hover" data-value="500000">重庆市</li><li data-hover="hover" data-value="510000">四川省</li><li data-hover="hover" data-value="520000">贵州省</li><li data-hover="hover" data-value="530000">云南省</li><li data-hover="hover" data-value="540000">西藏</li><li data-hover="hover" data-value="610000">陕西省</li><li data-hover="hover" data-value="620000">甘肃省</li><li data-hover="hover" data-value="630000">青海省</li><li data-hover="hover" data-value="640000">宁夏</li><li data-hover="hover" data-value="650000">新疆</li></ul><div class="scr_com sel_scroll" style="height: 0px;"><div class="scr_monsemove sel_scroll_btn"></div> </div></div></div></div>
+									<div class="J_city w120 mg_r10 posR f_l permy"><div class="J_select"><span class="sel_span" data-value="">--请选择--</span><div class="sel_div" style="height: 0px;"><ul class="sel_ul"><li data-value="" data-hover="hover">--请选择--</li></ul><div class="scr_com sel_scroll" style="height: 0px;"><div class="scr_monsemove sel_scroll_btn"></div> </div></div></div>
+										<input type="hidden" name="city" id="hid_city" class="J_hide">
+									<input type="text" class="absolute hidden_input2" name="J_sel_input"><input type="text" name="J_sel_input" class="absolute hidden_input2"></div>
+									<div class="J_area w140 f_l posR permy permyre"><div class="J_select"><span class="sel_span" data-value="">--请选择--</span><div class="sel_div" style="height: 0px;"><ul class="sel_ul"><li data-value="" data-hover="hover">--请选择--</li></ul><div class="scr_com sel_scroll" style="height: 0px;"><div class="scr_monsemove sel_scroll_btn"></div> </div></div></div>
+										<input type="hidden" name="addr_area_id" id="hid_area" class="J_hide">
+									<input type="text" class="absolute hidden_input2" name="J_sel_input"><input type="text" name="J_sel_input" class="absolute hidden_input2"></div>
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<span class="col_ee5b47"></span>街道地址：
+								</th>
+								<td>
+									<input type="text" data-highlight="highlight" maxlength="128" value="" class="inpCom w380 permy" name="address">
+								</td>
+							</tr>
+							<tr>
+								<th>
+									<span class="col_ee5b47"></span>手机号码：
+								</th>
+								<td>
+									<input type="text" data-highlight="highlight" maxlength="64" value="" class="inpCom w200 permy" name="phone">
+								</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td>
+									<label class="checked J_default_address">
+										<i class="openIcon inline">
+
+										</i>&nbsp;设为默认地址
+									</label>
+
+
+								</td>
+							</tr>
+							<tr>
+								<th></th>
+								<td colspan="2"><a id="btn_SaveAddress" href="#" class="btnCom1 btnComS btnBg2 btnH1 w80 inline J_save"><span>确 定</span></a></td>
+							</tr>
+						</tbody></table>
+					</div>
+				</form>
+				<h3 class="perTitle col_523 lineH24">已保存的地址</h3>
+				<table border="0" cellspacing="0" cellpadding="0" class="perTableTitle1">
+						<tbody><tr>
+							<td width="9%"><span class="inline">收货人</span></td>
+							<td width="20%"><span class="inline">所在省市</span></td>
+							<td width="30%"><span class="inline">街道地址</span></td>
+							<td width="10%"><span class="inline">手机</span></td>
+							<td width="10%"><span class="inline"></span></td>
+							<td width="10%"><span class="inline">操作</span></td>
+						</tr>
+					</tbody>
+				</table>
+				<table border="0" cellspacing="1" cellpadding="0" class="J_table per_list1  bg_fff">
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>
+{% endblock %}

@@ -7,6 +7,9 @@ urlpatterns = [
     url("^login", views.acc_login, name="login"),
     url("^logout", views.acc_logout, name="logout"),
     url("^profile", views.profile, name="profile"),
+    url("^MyAddressManager", views.MyAddressManager, name="MyAddressManager"),
+    url("^ChangePassword", views.ChangePassword, name="ChangePassword"),
+    url("^MyOrder", views.MyOrder, name="MyOrder"),
     #url("^host_mgr/$", views.host_mgr, name="host_mgr"),
 
 ]
