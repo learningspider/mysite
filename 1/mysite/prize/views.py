@@ -75,3 +75,11 @@ def ChangePassword(request):
 def MyOrder(request):
     return render(request,'prize/MyOrder.html',{'user':request.user})
 
+@login_required
+def MyRefunds(request):
+    return render(request,'prize/MyRefunds.html',{'user':request.user})
+
+@login_required
+def MyReservation(request):
+    return render(request,'prize/MyReservation.html',{'user':request.user})
+
