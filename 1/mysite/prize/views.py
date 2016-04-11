@@ -60,6 +60,18 @@ def acc_logout(request):
 
 @login_required
 def profile(request):
-    if request.user.is_authenticated():
-        return render(request,'prize/profile.html',{'user':request.user})
-    return render(request,'prize/profile.html')
+    return render(request,'prize/profile.html',{'user':request.user})
+
+
+@login_required
+def MyAddressManager(request):
+    return render(request,'prize/MyAddressManager.html',{'user':request.user})
+
+@login_required
+def ChangePassword(request):
+    return render(request,'prize/ChangePassword.html',{'user':request.user})
+
+@login_required
+def MyOrder(request):
+    return render(request,'prize/MyOrder.html',{'user':request.user})
+

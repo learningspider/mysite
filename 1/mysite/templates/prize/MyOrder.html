@@ -1,0 +1,123 @@
+{% extends 'prize/base.html' %}
+{% block title %}必要 - 全球首家C2M电子商务平台{% endblock  %}
+
+{% block home_banner %}
+{% endblock %}
+
+{% block body %}
+
+<link type="text/css" href="/statics/prize/css/myCenter.css" rel="stylesheet">
+<div class="wrap  posR mg_t20 mH810 pd_b40">
+		<div class="per_left">
+			<div class="per_leftbox  pd_t14">
+				<ul class="per_leftul">
+					<li class="t_c">
+						<a href="/MyCenter/Profile.html">
+							<img src="http://img.biyao.com/files/temp/4b/4b1da817-808b-42//7dc4d96d-3221-44b1-98c9-f417114f88d6.png" alt="" onerror="javascript:this.src='http://static.biyao.com/pc/www/img/avatar/head_150.png'" style="width: 150px; height: 150px">
+						</a>
+					</li>
+					<li class="f14 col_fff mg_t10 t_c">by_3192430</li>
+				</ul>
+			</div>
+			<div class="per_leftbox">
+				<div class="perleft_menu pdtb_20">
+				<ul>
+					<li class="a_check "><a href="/MyCenters/MyOrder.html"><i class="f_r mcMIcon3 inline"></i>我的订单</a> </li>
+					<li class=" "><a href="/MyCenters/MyRefunds.html"><i class="f_r mcMIcon4 inline"></i>退款管理</a></li>
+<!--<li class=" "><a href="/MyCenter/MyIncomeRules.html" ><i class="f_r mcMIcon5 inline"></i>我的收益</a></li>-->
+					<li class=" "><a href="/MyCenter/Profile.html"><i class="f_r mcMIcon8 inline"></i>个人设置</a></li>
+					<li class=" "><a href="/MyCenter/MyReservation"><i class="f_r mcMIcon14 inline"></i>我的预约</a></li>
+					<!-- <div class="div_line"></div> -->
+					<!-- <a href="#"><i class="f_r mcMIcon9 inline"></i>设计师主页</a> <a
+						href="#"><i class="f_r mcMIcon10 inline"></i>设计师提现</a> -->
+				</ul>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript">
+        var pageIndex = 0;
+        var pageCount =0;
+</script>
+<div class="per_right_out backg_fff mg_b20 ">
+	<div class="per_right ">
+		<div>
+			<div class="relative">
+				<h4 class="nTitle">我的订单</h4>
+			</div>
+			<span class="f14 col_666 pd_t20 inline">
+			<span class="col_ee5b47 ">由于系统升级2016年01月18日之前的订单</span>
+						<span class="cursor col_link_hover" onclick="window.location.href='/MyCenter/MyOrder.html'">请戳这里!</span>
+			</span>
+			<!-- <span class="f14 col_666 pd_t20 inline">您暂时没有订单。</span> -->
+			<div class="DZPager mg_b20"></div>
+		</div>
+		<input type="hidden" id="storedesc" title="">
+	</div>
+</div>
+	<script>
+$(function(){
+	hoverReservationpart();
+	historyOrderTitHidden()
+})
+function historyOrderTitHidden(){
+	$(".historyOrderTitdel").click(function(){
+		$(".historyOrderTit").hide(300);
+	})
+}
+//划过汽车套餐弹出层套餐详情
+function hoverReservationpart(){
+	$(".Reservationpart").hover(
+			function(){
+				var $this=$(this);
+				//判断 是否已经加载过
+				if(($this.find(".Reservation_wl_w")).length==0){
+					$.ajax({
+		                type: "get",
+		                async: false,
+		                url:"/RequestAPI/PackageList?designId="+$this.attr("designid"),
+		                success: function (data) {//sunccess
+		                	if(data.success==1){
+		                	 var html='<div class="Reservation_wl_w">\
+				                	<div class="wl_jd"></div>\
+				                	<div class="c_wl_n">\
+				                	<div class="col_724 borderB c_wl_t overflow">\
+					                	<span class="f_l">'+data.data.standardPackage.name+' </span>\
+					                	<span class="f_r">￥'+data.data.standardPackage.price+'</span>\
+				                	</div>\
+				                	<div class=" col_666 masked-relative masked" style="line-height:25px">';
+				                $.each(data.data.standardPackage.element,function(j,item){
+				                	html+='<div class="overflow">\
+				                		<span class="w150 f_l">'+item+'</span><span class="f_r">包括</span>\
+				                		</div>';
+				                });
+				                $.each(data.data.comboPackage,function(j,item){
+				                  html+='<div class="col_724 borderB c_wl_t overflow">\
+					                	<span class="f_l">'+item.name+'</span><span class="f_r">￥'+item.price+'</span>\
+					                	</div>\
+					    				<div class=" col_666 masked-relative masked" style="line-height:25px">';
+					    			$.each(item.element,function(e,ite){
+					    				html+='<div class="overflow">\
+					    					<span class="w150 f_l">'+ite+'</span><span class="f_r">包括</span>\
+					    					</div>';
+					    			})
+					    				html+='</div>';
+				                })
+
+
+				    				 html+='</div>\
+				                	</div></div>';
+				                $this.append(html);
+		                	}
+		                }//sunccess
+		             })
+				}
+				$this.find(".Reservation_wl_w").css("display","block");
+			}
+			,function(){
+				$(this).find(".Reservation_wl_w").css("display","none");
+			}
+	);
+
+}
+</script></div>
+{% endblock %}
