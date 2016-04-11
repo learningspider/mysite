@@ -1,0 +1,435 @@
+{% extends 'prize/base.html' %}
+{% block title %}必要 - 全球首家C2M电子商务平台{% endblock  %}
+
+{% block home_banner %}
+{% endblock %}
+
+{% block body %}
+
+<link type="text/css" href="/statics/prize/css/myCenter.css" rel="stylesheet">
+<div class="wrap  posR mg_t20 mH810 pd_b40">
+		<div class="per_left">
+			<div class="per_leftbox  pd_t14">
+				<ul class="per_leftul">
+					<li class="t_c">
+						<a href="{% url 'profile' %}">
+							<img src="http://img.biyao.com/files/temp/4b/4b1da817-808b-42//7dc4d96d-3221-44b1-98c9-f417114f88d6.png" alt="" onerror="javascript:this.src='http://static.biyao.com/pc/www/img/avatar/head_150.png'" style="width: 150px; height: 150px">
+						</a>
+					</li>
+					<li class="f14 col_fff mg_t10 t_c">by_3192430</li>
+				</ul>
+			</div>
+			<div class="per_leftbox">
+				<div class="perleft_menu pdtb_20">
+				<ul>
+					<li class=" "><a href="{% url 'MyOrder' %}"><i class="f_r mcMIcon3 inline"></i>我的订单</a> </li>
+					<li class=" "><a href="{% url 'MyRefunds' %}"><i class="f_r mcMIcon4 inline"></i>退款管理</a></li>
+<!--<li class=" "><a href="/MyCenter/MyIncomeRules.html" ><i class="f_r mcMIcon5 inline"></i>我的收益</a></li>-->
+					<li class=" "><a href="{% url 'profile' %}"><i class="f_r mcMIcon8 inline"></i>个人设置</a></li>
+					<li class="a_check "><a href="{% url 'MyReservation' %}"><i class="f_r mcMIcon14 inline"></i>我的预约</a></li>
+					<!-- <div class="div_line"></div> -->
+					<!-- <a href="#"><i class="f_r mcMIcon9 inline"></i>设计师主页</a> <a
+						href="#"><i class="f_r mcMIcon10 inline"></i>设计师提现</a> -->
+				</ul>
+				</div>
+			</div>
+		</div>
+		<script>var data=[];
+ </script>
+
+<div class="per_right_out backg_fff mg_b20 ">
+	<div class="per_right ">
+		<h4 class="nTitle">我的预约</h4>
+		<span class="f14 col_666 pd_t20 inline">您暂时没有预约。</span>
+		</div>
+</div>
+<script type="text/template" id="pop_reservation">
+<h4 class="f14 col_666 mg_t15 mg_b15">您计划用什么形式购买？</h4>
+<div class="reservationNavall"><div class="reservationNav f14 col_666 border cursor mg_r20 border " value=0>个人</div>
+<div class="reservationNav f14 col_666 border cursor" value=1>公司</div></div>
+<table class="per_table reservationInfoall" width="100%" cellspacing="10">
+<tbody>
+<tr><td width="15%" align="right" id="i_usernameText">
+购买人：&nbsp;
+</td>
+<td width="35%">
+<input id="i_username" type="text" value="" name="" maxlength="50" class="inpCom w230 permy" placeholder="请输入实际购买人姓名" >
+<input id="i_user" type="text" value="" name="" maxlength="50" class="inpCom w230 permy none" placeholder="请输入实际购买公司名称" >
+</td>
+<td width="15%" align="right">
+手机号码：&nbsp;
+</td>
+<td width="35%">
+<input id="i_mobile" type="text" value="" name="" maxlength="11" class="inpCom w230 permy" placeholder="请输入手机号">
+</td>
+ </tr>
+<tr><td width="15%" align="right" id="CodeText">
+身份证号：&nbsp;
+</td>
+<td width="35%">
+<input id="i_identityCard" type="text" value="" name="" class="inpCom w230 permy" maxlength="18"placeholder="请输入实际购买人的身份证号码" >
+<input id="i_taxCode" type="text" value="" name="" class="inpCom w230 permy none" maxlength="20" placeholder="请输入实际购公司的税务登记号" >
+</td>
+<td width="15%" align="right">
+</td>
+<td width="35%">
+</td>
+ </tr>
+</tbody></table>
+
+<table class="per_table " width="100%" cellspacing="10">
+<tbody>
+<tr><td width="85" align="right">
+省份：&nbsp;
+</td>
+<td width="240">
+<div id="provice_seletor" class="w100w mg_r10 pos_0 f_l permy"></div>
+</td>
+<td width="85" align="right">
+城市：&nbsp;
+</td>
+<td width="240">
+<div id="city_seletor" class="w100w mg_r10 pos_0 f_l permy"></div>
+</td>
+ </tr>
+<tr><td width="85" align="right">
+提车4S店：&nbsp;
+</td>
+<td width="585" colspan="3">
+<div id="area_seletor"  class="w100w pos_0 f_l permy"></div>
+</td>
+ </tr>
+</tbody></table>
+<table cellspacing="0" cellpadding="0" class="w100w t_c  perTabTitn bg_cef border none">
+					<tbody>
+						<tr>
+							<td width="50%"><span class="inline">商品信息</span></td>
+							<td width="25%"><span class="inline">配置</span></td>
+							<td width="25%"><span class="inline">价格</span></td>
+						</tr>
+					</tbody>
+				</table>
+<table cellspacing="0" cellpadding="0" class="sop_table4 border none ">
+						<tbody>
+							<tr >
+
+								<td width="50%" align="center" class="bd_l vTop  lineH20" style="vertical-align:middle">
+
+									<table width="100%" height="100px" cellspacing="0" cellpadding="0">
+										<tbody>
+											<tr>
+												<td name="detail_td">
+													<a class="perCmImg inline mg_l10" target="_blank" href="/product/233330-0.html#editor">
+														<img alt="" src="http://img.biyao.com/files/data0/2015/09/22/19/design/a749a6e6d2841860.jpg">
+													</a>
+													<div class="inline mg_l10 vTop mg_t20 lineH20 w180">
+														<a class="col_666" href="/product/233330-0.html#editor" target="_blank">
+															<span class="col_666">男式免烫记忆衬衫-蓝色</span>
+														</a><br>
+															<span class=" col_999">红色</span><br>
+													</div>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+
+								</td>
+								<td width="25%" align="center" class="bd_l vTop  lineH20" style="vertical-align:middle"><a href="javascript:;" class="col_link ">标准配置+B套餐&gt;&gt;</a>
+								</td>
+								<td width="25%" align="center" class="bd_l vTop  lineH20" style="vertical-align:middle">
+								<strong class="col_f60 f14">￥50000</strong>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+<div class="mg_t20 t_c">
+					<a class="publicBtn publicBtn_h40 publicBtn_f60 inline mg_r20 w120" id="saveBtn">提交</a>
+					<a class="publicBtn publicBtn_h40 publicBtn_gray inline w120 none" >取消</a>
+				</div>
+</script>
+<script>
+//弹出窗口
+//预约id，用户类型 ，用户名，电话 ，身份证 ，纳税编号 ，省 ，市 ，4s地址
+function r_update_Info(reservationId,userType,username,mobile,identityCard,taxCode,province_id, city_id,area_id ){
+	var html=$("#pop_reservation").html();
+	$(this).dialogFn({
+        type: "alert",
+        title: "修改信息",
+        btnshow: false,
+        width:700,
+		height:500,
+        //drag: true,
+        content: html,
+        showAfter: function () {
+
+        	var $dialog = this.id;
+
+        		var upDateJson={
+        				reservationId:reservationId,
+        				username:username,
+        				mobile:mobile,
+        				identityCard:identityCard,
+        				taxCode:taxCode,
+        				storeId:area_id,
+        				userType:userType
+        		};
+
+        	//初始化数据
+        	//初始化用户类型
+        	$(($dialog.find(".reservationNav"))[userType]).addClass("reservationNavhover");
+        	//初始化 购买人
+        	if(userType){
+        	$dialog.find("#i_usernameText").text("公司名称：");
+        	$dialog.find("#i_user").removeClass("none").val(username);
+        	$dialog.find("#i_username").addClass("none");
+        	}
+        	else{
+        		$dialog.find("#i_username").val(username);
+        	}
+
+        	//初始化 证件号
+        	if(userType){//公司
+        	$dialog.find("#CodeText").text("税务登记号：");
+        	$dialog.find("#i_taxCode").removeClass("none").val(taxCode);
+        	$dialog.find("#i_identityCard").addClass("none");
+        	}
+        	else{
+        		$dialog.find("#i_identityCard").val(identityCard);
+        	}
+
+        	//初始化手机号
+        	$dialog.find("#i_mobile").val(mobile);
+        	//切换个人和公司
+        	$dialog.find(".reservationNav").click(function(){
+        		$dialog.find(".reservationNav").removeClass("reservationNavhover");
+        		$(this).addClass("reservationNavhover");
+        		var type=$(this).attr("value");
+        		upDateJson.userType=parseInt(type);
+        		if(type=="1"){
+        			$dialog.find("#CodeText").text("税务登记号：");
+        			$dialog.find("#i_taxCode,#i_user").removeClass("none");
+                	$dialog.find("#i_identityCard,#i_username").addClass("none");
+
+                	$dialog.find("#i_usernameText").text("公司名称：");
+                	/* $dialog.find("#i_user").removeClass("none");
+                	$dialog.find("#i_username").addClass("none"); */
+        		}
+        		else{
+        			$dialog.find("#CodeText").text("身份证号：");
+        			$dialog.find("#i_taxCode,#i_user").addClass("none");
+                	$dialog.find("#i_identityCard,#i_username").removeClass("none");
+
+                	$dialog.find("#i_usernameText").text("购买人：");
+/*                 	$dialog.find("#i_user").addClass("none");
+                	$dialog.find("#i_username").removeClass("none"); */
+        		}
+
+        	});
+
+
+        	//地址联动
+        	//省
+        	$.ajax({
+                type: "post",
+                async: false,
+                url:"/RequestAPI/GetCarProvince?cartype=xm", ///window.basePath + "/order/getProvince",
+                success: function (data) {
+                	$dialog.find("#provice_seletor").selectFn({
+                        textField: 'addr_name',
+                        valueField: 'addr_name',
+                        maxRow: 10,
+                        data: data.data,
+                        value: province_id,
+                        change: change_province
+                    });
+                }
+            });
+        	//市
+            $.ajax({
+                type: "post",
+                async: false,
+                data: {provn:province_id},
+                url: "/RequestAPI/GetCarCity?cartype=xm",
+                success: function (data) {
+                	$dialog.find("#city_seletor").selectFn({
+                        textField: 'addr_name',
+                        valueField: 'addr_name',
+                        value: city_id,
+                        data: data.data,
+                        change: change_city
+                    });
+                }
+            });
+        	//地址
+            $.ajax({
+                type: "post",
+                async: false,
+                data: {provn:province_id,city:city_id},
+                url: "/RequestAPI/GetCarStore?cartype=xm",
+                success: function (data) {
+                	$.each(data.data,function(j,item){
+                		var name4S="<div style='height:90px;width:500px; margin:0 auto;border-bottom:1px solid #cccccc'class='addr_name'>";
+                		name4S+=item.store_name_full;
+                		name4S+="<p class='col_999 w300 escp'>";
+                		name4S+=item.address;
+                		name4S+="</p >";
+                		name4S+="<p class='col_999 w300 escp'>";
+                		name4S+=item.telphone;
+                		name4S+="</p >";
+                		name4S+="</div>";
+                		item.addr_name=name4S;
+
+                	});
+                	$dialog.find("#area_seletor").selectFn({
+                        textField: 'addr_name',
+                        valueField: 'store_id',
+                        value: area_id,
+                        //tips:"<div style='width:500px; margin:0 auto;border-bottom:1px solid #cccccc'class='addr_name'>请选择4S</div>",
+                        data: data.data,
+                        maxRow: 10,
+                        change: change_area
+                    });
+                }
+            });
+            $dialog.find("#saveBtn").click(function(){
+            	infeSave($dialog,upDateJson);
+
+            })
+
+        }
+    });
+}
+//改动 省份
+function change_province() {
+    //清空
+    $("#city_seletor").setValue('');
+    $("#area_seletor").setValue('');
+    $("#area_seletor").setOptions([]);
+    $.ajax({
+        type: "post",
+        cache: false,
+        async: false,
+        data: {provn:this.value},
+        url: "/RequestAPI/GetCarCity?cartype=xm",
+        success: function (data) {
+            $("#city_seletor").setOptions(data.data);
+        }
+    });
+}
+//改动城市
+function change_city() {
+    //清空
+    $("#area_seletor").setValue('');
+    $.ajax({
+        type: "post",
+        cache: false,
+        async: false,
+        data: {provn:$("#provice_seletor .sel_span").attr("data-value"),city:this.value},
+        url: "/RequestAPI/GetCarStore?cartype=xm",
+        success: function (data) {
+        	$.each(data.data,function(j,item){
+        		var name4S="<div style='height:90px;width:500px; margin:0 auto;border-bottom:1px solid #cccccc'class='addr_name'>";
+        		name4S+=item.store_name_full;
+        		name4S+="<p class='col_999 w300 escp'>";
+        		name4S+=item.address;
+        		name4S+="</p >";
+        		name4S+="<p class='col_999 w300 escp'>";
+        		name4S+=item.telphone;
+        		name4S+="</p >";
+        		name4S+="</div>";
+        		item.addr_name=name4S;
+
+        	});
+            $("#area_seletor").setOptions(data.data);
+        }
+    });
+}
+//改动地址后
+function change_area() {
+   //记录提交
+}
+//修改信息提交
+function infeSave($dialog,opt){
+	var userType=(opt.userType)==1;
+	opt.username=$.trim(userType?$dialog.find("#i_user").val():$dialog.find("#i_username").val());
+	opt.identityCard=$.trim(userType?"":$dialog.find("#i_identityCard").val());
+	opt.taxCode=$.trim(userType?$dialog.find("#i_taxCode").val():"");
+	opt.mobile=$dialog.find("#i_mobile").val();
+	opt.storeId=$dialog.find("#area_seletor .sel_span").attr("data-value");
+	if(userType&&opt.username==''){
+		LT.alertSmall("公司名称不能为空");
+		return false;
+	}
+	if(!userType&&opt.username==''){
+		LT.alertSmall("购买人不能为空");
+		return false;
+	}
+	if(!userType&&!(isIdCardNo(opt.identityCard))){
+		LT.alertSmall("请输入正确的身份证号码");
+		return false;
+	}
+	if(userType&&opt.taxCode==''){
+		LT.alertSmall("税务登记号不能为空");
+		return false;
+	}
+	var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
+	if(!reg.test(opt.mobile)){
+		LT.alertSmall("请输入正确的电话号码");
+		return false;
+	}
+	if(opt.storeId==''){
+		LT.alertSmall("4s店地址不能为空");
+		return false;
+	}
+	$.ajax({
+        type: "post",
+        cache: false,
+        async: false,
+        data:opt,
+        url: "/RequestAPI/UpdateReservation",
+        success: function (data) {
+        	 location.reload();
+        	$dialog.find(".pop_close").click();
+        }
+    });
+}
+</script>
+
+<script>
+//购买倒计时
+$(function(){
+	 var list=$(".rList");
+	 $.each(list,function(j,itm){
+		 var item=$(itm);
+		 var shelfstatus=item.find('.time_left').attr('shelfstatus');
+			var lefttime=item.find('.time_left').attr('lefttime')/60;//剩余分钟数
+			if(shelfstatus==2){
+				item.find('.time_left').html('活动结束');
+				item.find('.J_buy_btn').remove();
+			}else{
+				if(lefttime>0){
+					if(lefttime>(24*60)){
+						item.find('.time_left').html('倒计时'+ parseInt(lefttime/(24*60)+1)+'天');
+					}
+					else if(lefttime>60){
+						item.find('.time_left').html('倒计时'+ parseInt(lefttime/60+1)+'小时');
+					}
+					else if(lefttime==60){
+						item.find('.time_left').html('倒计时'+ parseInt(lefttime/60)+'小时');
+					}
+					else{
+						item.find('.time_left').html('倒计时'+ parseInt(lefttime+1)+'分钟');
+					}
+					item.find('.J_buy_btn').attr("href","javascript:;").addClass("publicBtn_c").removeClass("publicBtn_f60");
+				}else{
+					item.find('.time_left').remove();
+				}
+				item.find('.J_buy_btn').removeClass("none");
+			}
+
+	 })
+});
+ </script>
+
+</div>
+{% endblock %}

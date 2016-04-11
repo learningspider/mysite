@@ -10,6 +10,8 @@ urlpatterns = [
     url("^MyAddressManager", views.MyAddressManager, name="MyAddressManager"),
     url("^ChangePassword", views.ChangePassword, name="ChangePassword"),
     url("^MyOrder", views.MyOrder, name="MyOrder"),
+    url("^MyRefunds", views.MyRefunds, name="MyRefunds"),
+    url("^MyReservation", views.MyReservation, name="MyReservation"),
     #url("^host_mgr/$", views.host_mgr, name="host_mgr"),
 
 ]

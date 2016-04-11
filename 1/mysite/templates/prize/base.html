@@ -30,7 +30,7 @@
 			<div class="f_l">
 				<ul class="pub_nav_list sizeZero">
 
-					<li class="inline"><a href="http://www.biyao.com/home/index.html">首页</a><span class="bg"></span></li>
+					<li class="inline"><a href="{% url 'index' %}">首页</a><span class="bg"></span></li>
 					<li class="inline"><a onclick='LT.skip_to()'>商家中心</a><span class="bg"></span></li>
 					<li class="inline"><a href="/minisite/bzzx">平台政策</a><span class="bg"></span></li>
 <!-- 					<li class="inline last"><a href="http://www.biyao.com/complaint/toAddComplaint">非法信息投诉</a><span class="bg"></span></li> -->
@@ -61,7 +61,7 @@
 					<div class="app_box">
 						<span class="inline upArre"></span>
 						<div class="bg_fff down_list_box">
-							<a class="inline" href="{% url 'profile' %}">我的订单</a>
+							<a class="inline" href="{% url 'MyOrder' %}">我的订单</a>
 							<a class="inline" href="{% url 'profile' %}">个人设置</a>
 						</div>
 					</div>
@@ -78,7 +78,7 @@
 </div>
 <div class="index_bg_fff">
 <div class="wrap pub_logo_box clearfix">
-	<div class="pub_logo f_l"><a href="/home/index.html"><img alt="" src="http://static1.biyao.com/pc/common/img/logo.png?v=biyao_4637d54"></a></div>
+	<div class="pub_logo f_l"><a href="{% url 'index' %}"><img alt="" src="http://static1.biyao.com/pc/common/img/logo.png?v=biyao_4637d54"></a></div>
 	<div class="f_r">
 		<ul class="sizeZero menu_nav_list">
 			   <li class="inline ">
@@ -172,7 +172,7 @@
 {% endblock %}
 
 
-<link rel="stylesheet" type="text/css" href="http://static3.biyao.com/pc/www/css/home.css?v=biyao_b551ce1"/>
+<link rel="stylesheet" type="text/css" href="/statics/prize/css/home.css"/>
 <style>
 .index_bg_fff{background-color:#fff;}
 </style>
@@ -456,24 +456,7 @@
 
 {% block bottom %}
 
-<script type="text/javascript">
-window.__pageType="home";
-if(typeof($.cookie("uid"))!="undefined"&&$.cookie("uid")!=null&&$.cookie("uid")!=""){
-	$.ajax({
-		url:"http://www.biyao.com/home/getDataForHomePage",
-		dataType:"jsonp",
-		jsonp:"callback",
-		data:{"uid":$.cookie("uid")},
-		success:function(result){
-			if(result.success==1){
-				$('#welcomID').remove();
-				$('#messageID').html('<a class="login"  href="http://www.biyao.com/MyCenters/MyOrder.html">Hi,'+result.nickname+'</a><a class="regist mg_l10" href="http://www.biyao.com/account/logout">[ 退出 ]</a>	');
-				//$('#messageNumID').html("("+result.messageNum+")");
-			}
-		}
-	})
-}
-</script>
+
 
 <div data-selector="J_im" id="webIM_showDiv"></div>
 

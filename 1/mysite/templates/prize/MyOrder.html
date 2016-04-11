@@ -12,7 +12,7 @@
 			<div class="per_leftbox  pd_t14">
 				<ul class="per_leftul">
 					<li class="t_c">
-						<a href="/MyCenter/Profile.html">
+						<a href="{% url 'profile' %}">
 							<img src="http://img.biyao.com/files/temp/4b/4b1da817-808b-42//7dc4d96d-3221-44b1-98c9-f417114f88d6.png" alt="" onerror="javascript:this.src='http://static.biyao.com/pc/www/img/avatar/head_150.png'" style="width: 150px; height: 150px">
 						</a>
 					</li>
@@ -22,11 +22,11 @@
 			<div class="per_leftbox">
 				<div class="perleft_menu pdtb_20">
 				<ul>
-					<li class="a_check "><a href="/MyCenters/MyOrder.html"><i class="f_r mcMIcon3 inline"></i>我的订单</a> </li>
-					<li class=" "><a href="/MyCenters/MyRefunds.html"><i class="f_r mcMIcon4 inline"></i>退款管理</a></li>
+					<li class="a_check "><a href="{% url 'MyOrder' %}"><i class="f_r mcMIcon3 inline"></i>我的订单</a> </li>
+					<li class=" "><a href="{% url 'MyRefunds' %}"><i class="f_r mcMIcon4 inline"></i>退款管理</a></li>
 <!--<li class=" "><a href="/MyCenter/MyIncomeRules.html" ><i class="f_r mcMIcon5 inline"></i>我的收益</a></li>-->
-					<li class=" "><a href="/MyCenter/Profile.html"><i class="f_r mcMIcon8 inline"></i>个人设置</a></li>
-					<li class=" "><a href="/MyCenter/MyReservation"><i class="f_r mcMIcon14 inline"></i>我的预约</a></li>
+					<li class=" "><a href="{% url 'profile' %}"><i class="f_r mcMIcon8 inline"></i>个人设置</a></li>
+					<li class=" "><a href="{% url 'MyReservation' %}"><i class="f_r mcMIcon14 inline"></i>我的预约</a></li>
 					<!-- <div class="div_line"></div> -->
 					<!-- <a href="#"><i class="f_r mcMIcon9 inline"></i>设计师主页</a> <a
 						href="#"><i class="f_r mcMIcon10 inline"></i>设计师提现</a> -->
