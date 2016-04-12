@@ -72,6 +72,10 @@ def ChangePassword(request):
     return render(request,'prize/ChangePassword.html',{'user':request.user})
 
 @login_required
+def ChangePasswordActive(request):
+    return render(request,'prize/ChangePassword.html',{'user':request.user})
+
+@login_required
 def MyOrder(request):
     return render(request,'prize/MyOrder.html',{'user':request.user})
 
