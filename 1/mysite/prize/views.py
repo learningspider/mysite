@@ -22,7 +22,12 @@ def acc_register(request):
         userName = request.POST.get('userName')
         password1 = request.POST.get('password')
         password2 = request.POST.get('confirmPassword')
-        user = myusers_utils.create_myuser(request)
+        if (password1==password2):
+            password = password1
+        else:
+            login_err = "Wrong username or password!"
+            return  render(request,'prize/register.html', {'login_err':login_err})
+        user = myusers_utils.create_myuser(userName,password)
         user = authenticate(username=userName,password=password1)
         if user is not None:
             login(request,user)
