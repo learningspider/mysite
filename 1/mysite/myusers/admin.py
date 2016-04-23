@@ -61,7 +61,7 @@ class UserAdmin(BaseUserAdmin):
     # These override the definitions on the base UserAdmin
     # that reference specific fields on auth.User.
     list_display = ('email','name', 'date_of_birth', 'is_admin')
-    list_filter = ('is_admin',)
+    list_filter = ('is_admin','date_joined')
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('name','IDcard','gender','phonenumber','address','QQ','MBWT','MBDA','memo')}),
