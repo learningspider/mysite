@@ -3,6 +3,7 @@ from hashlib import sha1
 import os,time
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
+from myusers import utils as myusers_utils
 
 #create_session = lambda : sha1('%s%s' %(os.urandom(16),time.time())).hexdigest()
 
@@ -17,9 +18,25 @@ def shop(request):
 def acc_register(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/')
+    if request.method == 'POST':
+        userName = request.POST.get('userName')
+        password1 = request.POST.get('password')
+        password2 = request.POST.get('confirmPassword')
+        user = myusers_utils.create_myuser(request)
+        user = authenticate(username=userName,password=password1)
+        if user is not None:
+            login(request,user)
+
+            return HttpResponseRedirect('/')
+
+        else:
+            login_err = "Wrong username or password!"
+            return  render(request,'prize/register.html', {'login_err':login_err})
     return render(request,'prize/register.html')
 
 def acc_login(request):
+    if request.user.is_authenticated():
+        return HttpResponseRedirect('/')
     if request.method == 'POST':
         userName = request.POST.get('userName')
         password = request.POST.get('password')
@@ -34,8 +51,7 @@ def acc_login(request):
         else:
             login_err = "Wrong username or password!"
             return  render(request,'prize/login.html', {'login_err':login_err})
-    if request.user.is_authenticated():
-        return HttpResponseRedirect('/')
+
     return render(request,'prize/login.html')
 
 @login_required
