@@ -1,11 +1,11 @@
 #_*_coding:utf-8_*_
 from django.shortcuts import render,HttpResponseRedirect
-from myusers.models import MyUserManager,MyUser
+from myusers.models import MyUser
 from hashlib import sha1
 import os,time,datetime
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
-from myusers import utils as myusers_utils
+
 
 #create_session = lambda : sha1('%s%s' %(os.urandom(16),time.time())).hexdigest()
 
@@ -38,8 +38,8 @@ def acc_register(request):
         else:
             login_err = "Wrong username or password!"
             return  render(request,'prize/register.html', {'login_err':login_err})
-        datetime1 = datetime.date
-        user1=MyUserManager.create_user(userName=userName,password=password,name="",date_of_birth=datetime1)
+        datetime1 = datetime.date.today()
+        user1=MyUser.objects.create_user(email=userName,password=password,name="name",date_of_birth=datetime1)
 
         user = authenticate(username=userName,password=password1)
         if user is not None:

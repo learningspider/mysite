@@ -38,7 +38,7 @@ $(function(){
 				    
 					
                     if( this.value=="" || this.value.length < 6 ){
-                        var errorMsg = '请输入至少6位的用户名.';
+                        var errorMsg = '请输入至少6位的邮箱名作为用户名.';
                         $parent.append('<span class="formtips onError">'+errorMsg+'</span>');
                     }else{
                         var okMsg = '输入正确.';
@@ -78,7 +78,7 @@ $(function(){
 			 	if ($('form #username').val()=="")
 				{alert("用户名不对.");
                     return false;}
-				else ($('form #passwd1').val()=="")
+				else if($('form #passwd1').val()=="")
 				{
 					alert("用户名或密码不对.");
                     return false;
