@@ -1,6 +1,8 @@
+#_*_coding:utf-8_*_
 from django.shortcuts import render,HttpResponseRedirect
+from myusers.models import MyUserManager,MyUser
 from hashlib import sha1
-import os,time
+import os,time,datetime
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from myusers import utils as myusers_utils
@@ -20,6 +22,15 @@ def acc_register(request):
         return HttpResponseRedirect('/')
     if request.method == 'POST':
         userName = request.POST.get('userName')
+        try:
+            getuser=MyUser.objects.get(email=userName)
+            if getuser:
+                login_err = "用户已存在！"
+                return  render(request,'prize/register.html', {'login_err':login_err})
+        except:
+            pass
+
+
         password1 = request.POST.get('password')
         password2 = request.POST.get('confirmPassword')
         if (password1==password2):
@@ -27,7 +38,9 @@ def acc_register(request):
         else:
             login_err = "Wrong username or password!"
             return  render(request,'prize/register.html', {'login_err':login_err})
-        user = myusers_utils.create_myuser(userName,password)
+        datetime1 = datetime.date
+        user1=MyUserManager.create_user(userName=userName,password=password,name="",date_of_birth=datetime1)
+
         user = authenticate(username=userName,password=password1)
         if user is not None:
             login(request,user)
