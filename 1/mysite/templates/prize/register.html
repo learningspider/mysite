@@ -37,7 +37,7 @@ $(function(){
 
 
                     if( this.value=="" || this.value.length < 6 ){
-                        var errorMsg = '请输入至少6位的用户名.';
+                        var errorMsg = '请输入至少6位的邮箱名作为用户名.';
                         $parent.append('<span class="formtips onError">'+errorMsg+'</span>');
                     }else{
                         var okMsg = '输入正确.';
@@ -134,7 +134,7 @@ $(function(){
 		<dl class="mg_t20">
 			<!-- <dt class="inline">手机号：</dt> -->
 			<dd class="inline mg_r5">
-			<input type="text"  id="username" value="" class="loginTxt w360 col_999 border" name="userName" data-type="mobile-number" maxlength="11">
+			<input type="text"  id="username" value="" class="loginTxt w360 col_999 border" name="userName"  maxlength="80">
 
 			</dd>
 	        <dd class="J_validate inline col_f90"></dd>
@@ -265,6 +265,7 @@ $(function(){
 		</div>
 	</div>
 	</form>
+    <p>{{ login_err }}</p>
 </div>
 </div>
 <script type="text/javascript">
