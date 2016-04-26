@@ -9,7 +9,7 @@ urlpatterns = [
     url("^profile", views.profile, name="profile"),
     url("^MyAddressManager", views.MyAddressManager, name="MyAddressManager"),
     url("^ChangePassword", views.ChangePassword, name="ChangePassword"),
-    url("^ChangePasswordActive", views.ChangePasswordActive, name="ChangePasswordActive"),
+
     url("^MyOrder", views.MyOrder, name="MyOrder"),
     url("^MyRefunds", views.MyRefunds, name="MyRefunds"),
     url("^MyReservation", views.MyReservation, name="MyReservation"),
