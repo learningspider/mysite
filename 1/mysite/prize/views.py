@@ -2,7 +2,7 @@
 from django.shortcuts import render,HttpResponseRedirect
 from myusers.models import MyUser
 from hashlib import sha1
-import os,time,datetime
+import os,time,datetime,string
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 
@@ -103,11 +103,29 @@ def MyAddressManager(request):
 
 @login_required
 def ChangePassword(request):
+    if request.method == 'POST':
+        oldpassword = string.strip(request.POST.get('OldPassword'))
+        usernow = authenticate(username=request.user.email,password=oldpassword)
+
+        if usernow:
+            newpassword = string.strip(request.POST.get('NewPassword'))
+
+            confirmpassword = string.strip(request.POST.get('ConfirmPassword'))
+            if newpassword and confirmpassword and newpassword != confirmpassword:
+                login_err = "Wrong password!"
+                return  render(request,'prize/ChangePassword.html', {'login_err':login_err})
+            else:
+                usernow.set_password(newpassword)
+                usernow.save()
+
+                login_err = "密码修改成功!"
+                return  render(request,'prize/ChangePassword.html', {'login_err':login_err})
+        else:
+            login_err = "旧密码输入错误!"
+            return  render(request,'prize/ChangePassword.html', {'login_err':login_err})
     return render(request,'prize/ChangePassword.html',{'user':request.user})
 
-@login_required
-def ChangePasswordActive(request):
-    return render(request,'prize/ChangePassword.html',{'user':request.user})
+
 
 @login_required
 def MyOrder(request):
