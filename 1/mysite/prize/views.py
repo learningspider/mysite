@@ -109,7 +109,9 @@ def ChangePassword(request):
 
         if usernow:
             newpassword = string.strip(request.POST.get('NewPassword'))
-
+            if len(newpassword)<6:
+                login_err = "密码长度小于6位!"
+                return  render(request,'prize/ChangePassword.html', {'login_err':login_err})
             confirmpassword = string.strip(request.POST.get('ConfirmPassword'))
             if newpassword and confirmpassword and newpassword != confirmpassword:
                 login_err = "Wrong password!"
