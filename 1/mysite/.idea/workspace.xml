@@ -5,8 +5,8 @@
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/__init__.py" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/tools/sendEmail.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
     </list>
     <ignored path="mysite.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,8 +47,8 @@
       <file leaf-file-name="buy.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tools/buy.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.21568628">
-              <caret line="77" column="48" selection-start-line="77" selection-start-column="48" selection-end-line="77" selection-end-column="48" />
+            <state vertical-scroll-proportion="0.6405229">
+              <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
               <folding>
                 <element signature="e#46#74#0" expanded="true" />
               </folding>
@@ -179,8 +179,8 @@
         <option value="$PROJECT_DIR$/prize/urls.py" />
         <option value="$PROJECT_DIR$/prize/views.py" />
         <option value="$PROJECT_DIR$/buy.py" />
-        <option value="$PROJECT_DIR$/tools/buy.py" />
         <option value="$PROJECT_DIR$/tools/sendEmail.py" />
+        <option value="$PROJECT_DIR$/tools/buy.py" />
       </list>
     </option>
   </component>
@@ -1013,8 +1013,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/tools/buy.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21568628">
-          <caret line="77" column="48" selection-start-line="77" selection-start-column="48" selection-end-line="77" selection-end-column="48" />
+        <state vertical-scroll-proportion="0.6405229">
+          <caret line="165" column="0" selection-start-line="165" selection-start-column="0" selection-end-line="165" selection-end-column="0" />
           <folding>
             <element signature="e#46#74#0" expanded="true" />
           </folding>
