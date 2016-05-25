@@ -130,9 +130,12 @@ def buy():
                     print u'\u627e\u4e0d\u5230\u4ef7\u683c' #找不到价格
                     time.sleep(30)
                     continue
-                level_jiage = level_jiage.split(u'\uffe5')[1].split('.')[0]
-                print level_jiage
-                level_jiage = int(level_jiage)
+                try:
+                    level_jiage = level_jiage.split(u'\uffe5')[1].split('.')[0]
+                    print level_jiage
+                    level_jiage = int(level_jiage)
+                except:
+                    continue
                 if level_jiage <= 30: #如果售价小于30
 
                     #获取是否可以购买
