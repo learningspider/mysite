@@ -5,10 +5,10 @@
 '''
 import smtplib
 from email.mime.text import MIMEText
-mailto_list=['1161192890@qq.com']
+mailto_list=['1161192890@qq.com','18131611146@189.cn']
 mail_host="smtp.163.com"  #设置服务器
 mail_user="spider19830325@163.com"    #用户名
-mail_pass="666666"   #口令
+mail_pass="chao8686"   #口令
 mail_postfix="163.com"  #发件箱的后缀
 
 def send_mail(to_list,sub,content):
@@ -28,7 +28,7 @@ def send_mail(to_list,sub,content):
         print str(e)
         return False
 if __name__ == '__main__':
-    if send_mail(mailto_list,"hello","hello world！"):
+    if send_mail(mailto_list,u"你好",u"马上发大财！"):
         print "send success!"
     else:
         print "send fail!"

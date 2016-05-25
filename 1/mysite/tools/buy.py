@@ -3,7 +3,7 @@
 
 from splinter import Browser
 import datetime
-import time,re
+import time,re,sendEmail
 
 
 import HTMLParser
@@ -12,7 +12,7 @@ import urllib
 import urllib2
 import cookielib
 import string
-import re
+
 
 #登录的主页面
 '''hosturl = '******' #自己填写
@@ -153,6 +153,13 @@ def buy():
                         print alert.text
                         alert.accept()
                         alert.dismiss()
+                        to_list=''
+                        sub = u'已购买成功'
+                        content = u'已购买'
+                        sendEmail.send_mail(to_list,sub,content)
+                        time.sleep(300)
+                        sendEmail.send_mail(to_list,sub,content)
+                        raw_input(u"输入任何内容，回车继续！")
                     except:
                         print u'\u5df2\u88ab\u81ea\u5df1\u8ba2\u8d2d' #已被自己订购
                         time.sleep(30)
