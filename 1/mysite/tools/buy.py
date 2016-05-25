@@ -102,7 +102,7 @@ def buy():
                 links_found.click()
                 links_found = browser.find_by_text('召唤兽类')
                 links_found.click()
-                time.sleep(30)
+                #time.sleep(30)
                 #browser.reload()
             except:
                 print u'\u627e\u4e0d\u5230\u9875\u9762' #找不到页面
@@ -166,7 +166,7 @@ def buy():
 
 
 
-            time.sleep(10)
+            time.sleep(20)
 
 
         '''if browser.is_text_present('splinter.readthedocs.org'):
