@@ -3,7 +3,7 @@
 
 from splinter import Browser
 import datetime
-import time
+import time,re
 
 
 import HTMLParser
@@ -55,15 +55,21 @@ def buy():
         # Visit URL
         url = "http://xy2.cbg.163.com/"
         browser.visit(url)
-        time.sleep(10)
+        #time.sleep(10)
         button = browser.find_by_id('link_105')
         button.click()
-        time.sleep(10)
+        #time.sleep(10)
         button = browser.find_by_id('server_18齐云灵脉')
         button.click()
 
         #点击登陆 需要手动输入用户名 密码 验证码
-        time.sleep(30)
+        #time.sleep(30)
+        raw_input_name = raw_input("username: ")
+        raw_input_password = raw_input("password: ")
+        image_validate = raw_input("image_validate: ")
+        browser.find_by_id('urs').fill(raw_input_name)
+        browser.find_by_id('password').fill(raw_input_password)
+        browser.find_by_id('image_validate').fill(image_validate)
         links_found = browser.find_by_tag('a')[9]
         links_found.click()
 
@@ -73,7 +79,9 @@ def buy():
         links_found.click()
 
         #输入将军登陆界面
-        time.sleep(30)
+        #time.sleep(30)<input class="text" name="otp" id="otp" type="password">
+        jiangjun_validate = raw_input("jiangjun_validate: ")
+        browser.find_by_id('otp').fill(jiangjun_validate)
         links_found = browser.find_by_value('确定')
         links_found.click()
 
@@ -88,8 +96,71 @@ def buy():
         links_found.click()
 
         while True:
-            time.sleep(4)
-            browser.reload()
+            #循环页面
+            try:
+                links_found = browser.find_by_id('banner_fairshow_a')
+                links_found.click()
+                links_found = browser.find_by_text('召唤兽类')
+                links_found.click()
+                time.sleep(30)
+                #browser.reload()
+            except:
+                print u'\u627e\u4e0d\u5230\u9875\u9762' #找不到页面
+                time.sleep(10)
+                browser.visit('http://xy2.cbg.163.com/cgi-bin/equipquery.py')
+
+            #获取召唤兽等级
+            try:
+                level_zhaohuan=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[3]/span').value
+                print level_zhaohuan
+            except:
+                print u'\u627e\u4e0d\u5230\u53ec\u5524\u517d\u7b49\u7ea7' #找不到召唤兽等级
+                time.sleep(30)
+                continue
+            zhPattern = re.compile(u'\u70b9\u5316') #点化
+            match = zhPattern.search(level_zhaohuan)
+            if match: #如果召唤兽点化
+                print u'\u70b9\u5316' #点化
+
+                #获取召唤兽价格
+                try:
+                    level_jiage=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[6]').value
+                 #￥35000.00
+                except:
+                    print u'\u627e\u4e0d\u5230\u4ef7\u683c' #找不到价格
+                    time.sleep(30)
+                    continue
+                level_jiage = level_jiage.split(u'\uffe5')[1].split('.')[0]
+                print level_jiage
+                level_jiage = int(level_jiage)
+                if level_jiage <= 30: #如果售价小于30
+
+                    #获取是否可以购买
+                    try:
+                        level_goumai=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[7]/input')
+                        print level_goumai.value
+                        level_goumai.click() #跳转到购买界面
+
+                        #点击同意公示期规则按钮
+                        links_found = browser.find_by_id('agree_fair_show_pay')
+                        links_found.click()
+
+                        #点击预定（加入购物车）
+                        links_found = browser.find_by_id('buy_btn')
+                        links_found.click()
+
+                        alert = browser.get_alert()
+                        print alert.text
+                        alert.accept()
+                        alert.dismiss()
+                    except:
+                        print u'\u5df2\u88ab\u81ea\u5df1\u8ba2\u8d2d' #已被自己订购
+                        time.sleep(30)
+
+
+
+            time.sleep(10)
+
 
         '''if browser.is_text_present('splinter.readthedocs.org'):
             print("Yes, the official website was found!")
