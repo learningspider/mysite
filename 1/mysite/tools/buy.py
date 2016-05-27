@@ -50,10 +50,10 @@ print request
 response = urllib2.urlopen(request)
 text = response.read()
 print text'''
-def order(browser):
+def order(browser,level_goumai='/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[7]/input'):
     #获取是否可以购买
     try:
-        level_goumai=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[7]/input')
+        level_goumai=browser.find_by_xpath(level_goumai)
         print level_goumai.value
         level_goumai.click() #跳转到购买界面
 
@@ -177,11 +177,11 @@ def buy():
                 order(browser)
                 continue
 
-            '''
+
             #第二行数据
             #获取召唤兽等级
             try:
-                level_zhaohuan=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[3]/span').value
+                level_zhaohuan=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[2]/td[3]/span').value
                 print level_zhaohuan
             except:
                 print u'\u627e\u4e0d\u5230\u53ec\u5524\u517d\u7b49\u7ea7' #找不到召唤兽等级
@@ -194,7 +194,7 @@ def buy():
 
             #获取召唤兽价格
             try:
-                level_jiage=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[6]').value
+                level_jiage=browser.find_by_xpath('//html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[2]/td[6]').value
              #￥35000.00
             except:
                 print u'\u627e\u4e0d\u5230\u4ef7\u683c' #找不到价格
@@ -207,14 +207,14 @@ def buy():
             except:
                 continue
             if level_jiage <= 30: #如果售价小于30
-                order(browser)
+                order(browser,'/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[2]/td[7]/input')
                 continue
 
 
             #第三行数据
             #获取召唤兽等级
             try:
-                level_zhaohuan=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[3]/span').value
+                level_zhaohuan=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[3]/td[3]/span').value
                 print level_zhaohuan
             except:
                 print u'\u627e\u4e0d\u5230\u53ec\u5524\u517d\u7b49\u7ea7' #找不到召唤兽等级
@@ -227,7 +227,7 @@ def buy():
 
             #获取召唤兽价格
             try:
-                level_jiage=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[6]').value
+                level_jiage=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[3]/td[6]').value
              #￥35000.00
             except:
                 print u'\u627e\u4e0d\u5230\u4ef7\u683c' #找不到价格
@@ -240,14 +240,14 @@ def buy():
             except:
                 continue
             if level_jiage <= 30: #如果售价小于30
-                order(browser)
+                order(browser,'/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[3]/td[7]/input')
                 continue
 
 
             #第四行数据
             #获取召唤兽等级
             try:
-                level_zhaohuan=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[3]/span').value
+                level_zhaohuan=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[4]/td[3]/span').value
                 print level_zhaohuan
             except:
                 print u'\u627e\u4e0d\u5230\u53ec\u5524\u517d\u7b49\u7ea7' #找不到召唤兽等级
@@ -260,7 +260,7 @@ def buy():
 
             #获取召唤兽价格
             try:
-                level_jiage=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[6]').value
+                level_jiage=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[4]/td[6]').value
              #￥35000.00
             except:
                 print u'\u627e\u4e0d\u5230\u4ef7\u683c' #找不到价格
@@ -273,8 +273,8 @@ def buy():
             except:
                 continue
             if level_jiage <= 30: #如果售价小于30
-                order(browser)
-                continue'''
+                order(browser,'/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[4]/td[7]/input')
+                continue
 
             time.sleep(20)
 
