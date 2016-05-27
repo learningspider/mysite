@@ -50,6 +50,40 @@ print request
 response = urllib2.urlopen(request)
 text = response.read()
 print text'''
+def order(browser):
+    #获取是否可以购买
+    try:
+        level_goumai=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[7]/input')
+        print level_goumai.value
+        level_goumai.click() #跳转到购买界面
+
+        #点击同意公示期规则按钮
+        links_found = browser.find_by_id('agree_fair_show_pay')
+        links_found.click()
+
+        #点击预定（加入购物车）
+        links_found = browser.find_by_id('buy_btn')
+        links_found.click()
+
+        alert = browser.get_alert()
+        print alert.text
+        alert.accept()
+        alert.dismiss()
+        to_list=''
+        sub = u'已购买成功'
+        content = u'已购买'
+        sendEmail.send_mail(to_list,sub,content)
+        raw_input(u"输入任何内容，回车继续！")
+
+    except:
+        print u'\u5df2\u88ab\u81ea\u5df1\u8ba2\u8d2d' #已被自己订购
+        time.sleep(30)
+
+
+
+
+
+
 def buy():
     with Browser('firefox') as browser:
         # Visit URL
@@ -95,6 +129,7 @@ def buy():
         links_found = browser.find_by_text('召唤兽类')
         links_found.click()
 
+
         while True:
             #循环页面
             try:
@@ -109,6 +144,8 @@ def buy():
                 time.sleep(10)
                 browser.visit('http://xy2.cbg.163.com/cgi-bin/equipquery.py')
 
+
+            #第一行数据
             #获取召唤兽等级
             try:
                 level_zhaohuan=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[3]/span').value
@@ -122,52 +159,122 @@ def buy():
             if match: #如果召唤兽点化
                 print u'\u70b9\u5316' #点化
 
-                #获取召唤兽价格
-                try:
-                    level_jiage=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[6]').value
-                 #￥35000.00
-                except:
-                    print u'\u627e\u4e0d\u5230\u4ef7\u683c' #找不到价格
-                    time.sleep(30)
-                    continue
-                try:
-                    level_jiage = level_jiage.split(u'\uffe5')[1].split('.')[0]
-                    print level_jiage
-                    level_jiage = int(level_jiage)
-                except:
-                    continue
-                if level_jiage <= 30: #如果售价小于30
+            #获取召唤兽价格
+            try:
+                level_jiage=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[6]').value
+             #￥35000.00
+            except:
+                print u'\u627e\u4e0d\u5230\u4ef7\u683c' #找不到价格
+                time.sleep(30)
+                continue
+            try:
+                level_jiage = level_jiage.split(u'\uffe5')[1].split('.')[0]
+                print level_jiage
+                level_jiage = int(level_jiage)
+            except:
+                continue
+            if level_jiage <= 30: #如果售价小于30
+                order(browser)
+                continue
 
-                    #获取是否可以购买
-                    try:
-                        level_goumai=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[7]/input')
-                        print level_goumai.value
-                        level_goumai.click() #跳转到购买界面
+            '''
+            #第二行数据
+            #获取召唤兽等级
+            try:
+                level_zhaohuan=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[3]/span').value
+                print level_zhaohuan
+            except:
+                print u'\u627e\u4e0d\u5230\u53ec\u5524\u517d\u7b49\u7ea7' #找不到召唤兽等级
+                time.sleep(30)
+                continue
+            zhPattern = re.compile(u'\u70b9\u5316') #点化
+            match = zhPattern.search(level_zhaohuan)
+            if match: #如果召唤兽点化
+                print u'\u70b9\u5316' #点化
 
-                        #点击同意公示期规则按钮
-                        links_found = browser.find_by_id('agree_fair_show_pay')
-                        links_found.click()
-
-                        #点击预定（加入购物车）
-                        links_found = browser.find_by_id('buy_btn')
-                        links_found.click()
-
-                        alert = browser.get_alert()
-                        print alert.text
-                        alert.accept()
-                        alert.dismiss()
-                        to_list=''
-                        sub = u'已购买成功'
-                        content = u'已购买'
-                        sendEmail.send_mail(to_list,sub,content)
-                        time.sleep(300)
-                        sendEmail.send_mail(to_list,sub,content)
-                        raw_input(u"输入任何内容，回车继续！")
-                    except:
-                        print u'\u5df2\u88ab\u81ea\u5df1\u8ba2\u8d2d' #已被自己订购
-                        time.sleep(30)
+            #获取召唤兽价格
+            try:
+                level_jiage=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[6]').value
+             #￥35000.00
+            except:
+                print u'\u627e\u4e0d\u5230\u4ef7\u683c' #找不到价格
+                time.sleep(30)
+                continue
+            try:
+                level_jiage = level_jiage.split(u'\uffe5')[1].split('.')[0]
+                print level_jiage
+                level_jiage = int(level_jiage)
+            except:
+                continue
+            if level_jiage <= 30: #如果售价小于30
+                order(browser)
+                continue
 
 
+            #第三行数据
+            #获取召唤兽等级
+            try:
+                level_zhaohuan=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[3]/span').value
+                print level_zhaohuan
+            except:
+                print u'\u627e\u4e0d\u5230\u53ec\u5524\u517d\u7b49\u7ea7' #找不到召唤兽等级
+                time.sleep(30)
+                continue
+            zhPattern = re.compile(u'\u70b9\u5316') #点化
+            match = zhPattern.search(level_zhaohuan)
+            if match: #如果召唤兽点化
+                print u'\u70b9\u5316' #点化
+
+            #获取召唤兽价格
+            try:
+                level_jiage=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[6]').value
+             #￥35000.00
+            except:
+                print u'\u627e\u4e0d\u5230\u4ef7\u683c' #找不到价格
+                time.sleep(30)
+                continue
+            try:
+                level_jiage = level_jiage.split(u'\uffe5')[1].split('.')[0]
+                print level_jiage
+                level_jiage = int(level_jiage)
+            except:
+                continue
+            if level_jiage <= 30: #如果售价小于30
+                order(browser)
+                continue
+
+
+            #第四行数据
+            #获取召唤兽等级
+            try:
+                level_zhaohuan=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[3]/span').value
+                print level_zhaohuan
+            except:
+                print u'\u627e\u4e0d\u5230\u53ec\u5524\u517d\u7b49\u7ea7' #找不到召唤兽等级
+                time.sleep(30)
+                continue
+            zhPattern = re.compile(u'\u70b9\u5316') #点化
+            match = zhPattern.search(level_zhaohuan)
+            if match: #如果召唤兽点化
+                print u'\u70b9\u5316' #点化
+
+            #获取召唤兽价格
+            try:
+                level_jiage=browser.find_by_xpath('/html/body/div[5]/div[4]/div[2]/div/div/div[2]/div[5]/div[2]/table/tbody/tr[1]/td[6]').value
+             #￥35000.00
+            except:
+                print u'\u627e\u4e0d\u5230\u4ef7\u683c' #找不到价格
+                time.sleep(30)
+                continue
+            try:
+                level_jiage = level_jiage.split(u'\uffe5')[1].split('.')[0]
+                print level_jiage
+                level_jiage = int(level_jiage)
+            except:
+                continue
+            if level_jiage <= 30: #如果售价小于30
+                order(browser)
+                continue'''
 
             time.sleep(20)
 
