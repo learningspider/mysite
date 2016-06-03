@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
+__author__ = 'zhouchao'
 
 import MySQLdb
 
@@ -7,6 +8,7 @@ import MySQLdb
 def name():
     conn=MySQLdb.connect(host="localhost",user="root",passwd="zhouchao1850",db="ID",charset="gb2312")
     cursor =conn.cursor()
+    fwrite = open(r'd:\1.txt',mode='w+')
     with open(r'd:\1200Wsfz.txt') as f:
         line = f.readline()
         i = 0
@@ -30,10 +32,13 @@ def name():
                 conn.commit()
                 i = i + 1
             except:
+                contents = str(i) + ' ' + name + ' '+ ID + '\n'
+                fwrite.writelines(contents)
                 print i
             line = f.readline()
     cursor.close()
     conn.close()
+    fwrite.close()
 
 
 if __name__ == '__main__':
