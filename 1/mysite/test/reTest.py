@@ -10,7 +10,7 @@ def main():
     <img src="/static/image/common/grade_v1.png" title="Dataguru优秀学员">
 <img src="/static/image/common/grade_v1.png" title="Dataguru优秀学员">   <img src="/static/image/common/grade_v1.png" title="Dataguru优秀学员">
 <IMG width="200" height="63" src="static/cms/images/logo.png">'''
-    answer1 = re.compile(r'^\w+([\.-]?\w+)*\@\w+(\.\w{2,3}){1,2}$')
+    answer1 = re.compile(r'^\w+([_-]?\w+)*\@\w+(\.\w{2,3}){1,2}$')
 
     answer2 = re.compile(
         r'^(?:http|ftp)s?://' # http:// or https://
