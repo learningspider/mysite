@@ -10,7 +10,7 @@ def main():
     <img src="/static/image/common/grade_v1.png" title="Dataguru优秀学员"><IMG width="200" height="63" src="static/cms/images/logo.png">
 <img src="/static/image/common/grade_v1.png" title="Dataguru优秀学员"> a  <img src="/static/image/common/grade_v1.png" title="Dataguru优秀学员">
 <IMG width="200" height="63" src="static/cms/images/logo.png">'''
-    s1= 'ftp://wsdfs.com.cn/sdfkljkds'
+    s1= 'ftp://wsdfs.com.cn/sdfkljkds-369 569 dsdf789'
     answer1 = re.compile(r'^\w+([_-]?\w+)*\@\w+(\.\w{2,3}){1,2}$')
 
     answer2 = re.compile(
@@ -22,12 +22,12 @@ def main():
         r'(?:/?|[/?]\S+)$', re.I)
 
 
-    answer3 = re.compile(r'<img.*src\s*="?(\S+)"?\"',re.I)
+    answer3 = re.compile(r'<img[^>]*src\s*="?(\S+)"?\"',re.I)
 
 
     answer4 = re.compile(r'^[0-9]*[1-9][0-9]*$')
 
-    word1 = re.findall(answer2,s1)
+    word1 = re.findall(answer3,s)
     print word1
 
 
