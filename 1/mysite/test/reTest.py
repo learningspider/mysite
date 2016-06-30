@@ -25,9 +25,10 @@ def main():
     answer3 = re.compile(r'<img[^>]*src\s*="?(\S+)"?\"',re.I)
 
 
-    answer4 = re.compile(r'^[0-9]*[1-9][0-9]*$')
+    answer4 = re.compile(r'[0-9]*[1-9][0-9]*')
 
-    word1 = re.findall(answer3,s)
+
+    word1 = re.findall(answer4,s1)
     print word1
 
 
