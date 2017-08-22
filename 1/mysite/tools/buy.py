@@ -98,26 +98,26 @@ def buy():
 
         #点击登陆 需要手动输入用户名 密码 验证码
         #time.sleep(30)
-        raw_input_name = raw_input("username: ")
-        raw_input_password = raw_input("password: ")
-        image_validate = raw_input("image_validate: ")
-        browser.find_by_id('urs').fill(raw_input_name)
-        browser.find_by_id('password').fill(raw_input_password)
-        browser.find_by_id('image_validate').fill(image_validate)
-        links_found = browser.find_by_tag('a')[9]
-        links_found.click()
+        # raw_input_name = raw_input("username: ")
+        # raw_input_password = raw_input("password: ")
+        # image_validate = raw_input("image_validate: ")
+        # browser.find_by_id('urs').fill(raw_input_name)
+        # browser.find_by_id('password').fill(raw_input_password)
+        # browser.find_by_id('image_validate').fill(image_validate)
+        # links_found = browser.find_by_tag('a')[9]
+        # links_found.click()
 
         #点击进入
-        time.sleep(10)
+        time.sleep(60)
         links_found = browser.find_by_text('进入')
         links_found.click()
 
         #输入将军登陆界面
         #time.sleep(30)<input class="text" name="otp" id="otp" type="password">
-        jiangjun_validate = raw_input("jiangjun_validate: ")
-        browser.find_by_id('otp').fill(jiangjun_validate)
-        links_found = browser.find_by_value('确定')
-        links_found.click()
+        # jiangjun_validate = raw_input("jiangjun_validate: ")
+        # browser.find_by_id('otp').fill(jiangjun_validate)
+        # links_found = browser.find_by_value('确定')
+        # links_found.click()
 
         #点击公示期物品
         time.sleep(10)
